@@ -8,6 +8,7 @@ public class Enemy_Spawn : MonoBehaviour
     private bool is_enabled = false;
     public GameObject enemy;
     private GameObject player;
+    public float min, max;
 
     // Use this for initialization
     void Start()
@@ -22,10 +23,10 @@ public class Enemy_Spawn : MonoBehaviour
             if(is_enabled)
             {
                 transform.position = new Vector3(Random.Range(player.transform.position.x - 5f, player.transform.position.x + 5f), transform.position.y, transform.position.z);
-                if (transform.position.x < 96)
-                    transform.position = new Vector3(96 + Random.Range(0, 5f), transform.position.y, transform.position.z);
-                else if (transform.position.x > 139)
-                    transform.position = new Vector3(139 - Random.Range(0, 5f), transform.position.y, transform.position.z);
+                if (transform.position.x < min)
+                    transform.position = new Vector3(min + Random.Range(0, 5f), transform.position.y, transform.position.z);
+                else if (transform.position.x > max)
+                    transform.position = new Vector3(max - Random.Range(0, 5f), transform.position.y, transform.position.z);
                 yield return new WaitForSeconds(Random.Range(1.5f, 2.5f));
                 GameObject e = Instantiate(enemy, transform.position, Quaternion.identity);
                 e.GetComponentInChildren<Enemy_Vision>().wait_for_ground();

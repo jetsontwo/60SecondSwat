@@ -5,23 +5,52 @@ using UnityEngine;
 public class Player_Health : MonoBehaviour {
 
     private bool can_take_damage = true;
+    public int max_health, cur_health;
     public Sprite stun1, stun2;
     public SpriteRenderer stun_sprite;
+    private AudioSource hurt;
+
+    void Start()
+    {
+        hurt = stun_sprite.GetComponent<AudioSource>();
+        cur_health = max_health;
+    }
 
     public void take_damage()
     {
         if (can_take_damage)
         {
-            StartCoroutine(stun());
+            StartCoroutine(Flash(2));
+            cur_health--;
+            hurt.pitch = Random.Range(0.9f, 1.1f);
+            hurt.Play();
+            if(cur_health <= 0)
+            {
+                StartCoroutine(stun());
+                cur_health = max_health;
+            }
+        }
+    }
+
+    private IEnumerator Flash(int num_flashes)
+    {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        for(int i = 0; i < num_flashes; ++i)
+        {
+            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, .2f);
+            yield return new WaitForSeconds(0.1f);
+            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
     private IEnumerator stun()
     {
+        StopCoroutine("Flash");
         can_take_damage = false;
         gameObject.GetComponent<Player_Movement>().can_move = false;
         Player_Shooting ps = GetComponent<Player_Shooting>();
-        stun_sprite.GetComponent<AudioSource>().Play();
+        hurt.Play();
         float count = 0;
         int sprite_swap = 0;
         stun_sprite.enabled = true;

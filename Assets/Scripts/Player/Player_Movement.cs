@@ -25,7 +25,9 @@ public class Player_Movement : MonoBehaviour {
 	void Update () {
         on_ground = touching_ground();
 
-        if(can_move)
+        //Lets the player use the keyboard to move
+#if UNITY_EDITOR
+        if (can_move)
         {
             if (Input.GetKey(KeyCode.A))
                 rb.velocity = new Vector2(-speed * Time.deltaTime, rb.velocity.y);
@@ -37,7 +39,7 @@ public class Player_Movement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space) && on_ground)
                 rb.AddForce(new Vector2(rb.velocity.x, jump_strength));
         }
-
+#endif
     }
 
     bool touching_ground()

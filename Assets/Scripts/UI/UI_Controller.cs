@@ -27,12 +27,14 @@ public class UI_Controller : MonoBehaviour {
                         rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
                         if(pm.set_velocity_mod(1) == 1)
                             cur_direction = 1;
+                        ps.dir = 1;
                     }
                     else if (rh.collider.CompareTag("Left"))
                     {
                         rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
                         if(pm.set_velocity_mod(-1) == 1)
                             cur_direction = -1;
+                        ps.dir = -1;
                     }
                     else if (rh.collider.CompareTag("Jump"))
                     {
@@ -57,11 +59,13 @@ public class UI_Controller : MonoBehaviour {
                     {
                         if(pm.set_velocity_mod(1) == 1)
                             cur_direction = 1;
+                        ps.dir = 1;
                     }
                     else if (rh.collider.CompareTag("Left"))
                     {
                         if(pm.set_velocity_mod(-1) == 1)
                             cur_direction = -1;
+                        ps.dir = -1;
                     }
                     else if (rh.collider.CompareTag("Shoot"))
                     {
