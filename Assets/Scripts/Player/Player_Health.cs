@@ -22,8 +22,11 @@ public class Player_Health : MonoBehaviour {
         {
             StartCoroutine(Flash(2));
             cur_health--;
+
+            //Plays the hurt sound with modulation
             hurt.pitch = Random.Range(0.9f, 1.1f);
             hurt.Play();
+
             if(cur_health <= 0)
             {
                 StartCoroutine(stun());
@@ -46,11 +49,20 @@ public class Player_Health : MonoBehaviour {
 
     private IEnumerator stun()
     {
+        
         StopCoroutine("Flash");
         can_take_damage = false;
+
+//        //Vibrate Phone on Stun   (I didn't like it)
+//#if (UNITY_ANDROID || UNITY_IOS)
+//        Handheld.Vibrate();
+//#endif
+
+        //Stops the player from moving
         gameObject.GetComponent<Player_Movement>().can_move = false;
         Player_Shooting ps = GetComponent<Player_Shooting>();
-        hurt.Play();
+
+        //Flips the sprites on the stun
         float count = 0;
         int sprite_swap = 0;
         stun_sprite.enabled = true;
@@ -63,8 +75,11 @@ public class Player_Health : MonoBehaviour {
             yield return new WaitForSeconds(0.01f);
         }
         stun_sprite.enabled = false;
+
+        //Allows the player to move again
         gameObject.GetComponent<Player_Movement>().can_move = true;
         ps.stunned = false;
+        //Gives the player Invicibility after the stun
         StartCoroutine(i_frames());
     }
 
