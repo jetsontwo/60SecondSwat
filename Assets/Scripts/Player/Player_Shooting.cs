@@ -67,26 +67,29 @@ public class Player_Shooting : MonoBehaviour {
 
             //Shoots from edge of player
             bul.transform.position = transform.position + new Vector3(1.2f * direction, 0, 0);
-
+             
 
             //Flips the bullet based on direction facing
             if (direction == 1)
-            {
+            {  
                 bul.transform.rotation = Quaternion.identity;
-                rb.MovePosition(new Vector2(transform.position.x - 0.1f, transform.position.y));
+                //Move back the player
+                rb.MovePosition(new Vector2(transform.position.x - 0.05f, transform.position.y));
                 shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
             else
             {
                 bul.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
-                rb.MovePosition(new Vector2(transform.position.x + 0.1f, transform.position.y));
+                //Move back the player
+                rb.MovePosition(new Vector2(transform.position.x + 0.05f, transform.position.y));
                 shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             }
             bul.SetActive(true);
 
             //Bullet Shell
             GameObject s = Instantiate(shell, transform.position, Quaternion.identity);
-            s.GetComponent<Rigidbody2D>().AddForce(new Vector2(-direction * 50, 200));
+            s.GetComponent<Rigidbody2D>().AddForce(new Vector2(-direction * 50, Random.Range(190, 210)));
+            s.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-5f, 5f));
 
             //Screen Shake
             StartCoroutine(Shake());
