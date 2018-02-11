@@ -9,7 +9,8 @@ public class UI_Controller : MonoBehaviour {
     public LayerMask button_layer;
     public Sprite[] button_sprites;
 
-    private int cur_direction;
+    private int cur_direction = -1;
+
 
 	void Update()
     {
@@ -25,6 +26,7 @@ public class UI_Controller : MonoBehaviour {
                     if (rh.collider.CompareTag("Right"))
                     {
                         rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
+                        //This checks to make sure the player actually moved and wasn't stunned
                         if(pm.set_velocity_mod(1) == 1)
                             cur_direction = 1;
                         ps.dir = 1;
@@ -32,7 +34,8 @@ public class UI_Controller : MonoBehaviour {
                     else if (rh.collider.CompareTag("Left"))
                     {
                         rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
-                        if(pm.set_velocity_mod(-1) == 1)
+                        //This checks to make sure the player actually moved and wasn't stunned
+                        if (pm.set_velocity_mod(-1) == 1)
                             cur_direction = -1;
                         ps.dir = -1;
                     }

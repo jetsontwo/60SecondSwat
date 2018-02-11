@@ -18,6 +18,7 @@ public class Player_Shooting : MonoBehaviour {
     [Header("Bullets")]
     public GameObject bullet_list;
     private int cur_bullet_index;
+    public GameObject shell;
 
 
     [Header("Reloading")]
@@ -46,13 +47,14 @@ public class Player_Shooting : MonoBehaviour {
     {
 #if UNITY_EDITOR
         if (Input.GetMouseButton(0))
-            shoot(0);
+            shoot(dir);
 #endif
         //Makes the passive smoke follow the player's gun if they don't shoot since it doesn't update
-        if (dir == 1)
+        if(dir == 1)
             shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         else
             shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        shoot_smoke.gameObject.transform.position = transform.position + new Vector3(1.1f * dir, 0, 0);
     }
 
     //Shoots in a direction 1 = right -1 (or really anything else) is left
@@ -82,6 +84,10 @@ public class Player_Shooting : MonoBehaviour {
             }
             bul.SetActive(true);
 
+            //Bullet Shell
+            GameObject s = Instantiate(shell, transform.position, Quaternion.identity);
+            s.GetComponent<Rigidbody2D>().AddForce(new Vector2(-direction * 50, 200));
+
             //Screen Shake
             StartCoroutine(Shake());
 
@@ -91,7 +97,7 @@ public class Player_Shooting : MonoBehaviour {
             shoot_smoke.gameObject.GetComponent<Animator>().Play("Shoot");
 
             //Smoke After Shooting Effect
-            gun_heat = (gun_heat + 0.1f) < 1 ? gun_heat + 0.1f : 1;
+            gun_heat = (gun_heat + 0.05f) < 1 ? gun_heat + 0.05f : 1;
             if (!cooling)
                 StartCoroutine(Cool_Gun());
 

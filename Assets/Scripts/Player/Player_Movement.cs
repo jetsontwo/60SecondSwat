@@ -25,7 +25,7 @@ public class Player_Movement : MonoBehaviour {
 	void Update () {
         on_ground = touching_ground();
 
-        //Lets the player use the keyboard to move
+        //Lets the player use the keyboard to move in the Editor
 #if UNITY_EDITOR
         if (can_move)
         {

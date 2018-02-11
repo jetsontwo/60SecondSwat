@@ -167,7 +167,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1106227684262706}
   m_LocalRotation: {x: 0, y: 0, z: 0.6427876, w: 0.7660445}
-  m_LocalPosition: {x: -1.007, y: 0.031, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4600971457118392}
@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4405d1c10a1054d81827fc3ac8b4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: -1
   gun_holder: {fileID: 1710837099554004}
   shoot_smoke: {fileID: 198485631928314426}
   bullet_list: {fileID: 0}
@@ -535,7 +536,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -958137348
+  randomSeed: -1392736362
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3848,7 +3849,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -3896,7 +3897,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -860912417
+  randomSeed: -1468786584
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3986,7 +3987,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.77205884, g: 0.77205884, b: 0.77205884, a: 1}
+      maxColor: {r: 0.77205884, g: 0.77205884, b: 0.77205884, a: 0}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
