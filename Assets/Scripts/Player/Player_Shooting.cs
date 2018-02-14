@@ -54,7 +54,7 @@ public class Player_Shooting : MonoBehaviour {
             shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         else
             shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-        shoot_smoke.gameObject.transform.position = transform.position + new Vector3(1.1f * dir, 0, 0);
+        shoot_smoke.gameObject.transform.position = transform.position + new Vector3(1f * dir, 0, 0);
     }
 
     //Shoots in a direction 1 = right -1 (or really anything else) is left
@@ -66,7 +66,7 @@ public class Player_Shooting : MonoBehaviour {
             GameObject bul = bullet[cur_bullet_index++];
 
             //Shoots from edge of player
-            bul.transform.position = transform.position + new Vector3(1.2f * direction, 0, 0);
+            bul.transform.position = transform.position + new Vector3(1f * direction, 0, 0);
              
 
             //Flips the bullet based on direction facing
@@ -93,6 +93,9 @@ public class Player_Shooting : MonoBehaviour {
 
             //Screen Shake
             StartCoroutine(Shake());
+
+            //Recoil Gun
+            StartCoroutine(Recoil());
 
             //Smoke Effects
             shoot_smoke.gameObject.transform.position = transform.position + new Vector3(1.1f * direction, 0, 0);
@@ -128,6 +131,17 @@ public class Player_Shooting : MonoBehaviour {
         //gun_holder.transform.rotation = Quaternion.Euler(new Vector3(0, gun_holder.transform.rotation.eulerAngles.y, 0));
         yield return new WaitForSeconds(reload_time / 2f);
         can_shoot = true;
+    }
+
+    IEnumerator Recoil()
+    {
+        gun_holder.transform.Rotate(new Vector3(0, 0, 2));
+        yield return new WaitForSeconds(0.02f);
+        gun_holder.transform.Rotate(new Vector3(0, 0, 2));
+        yield return new WaitForSeconds(0.02f);
+        gun_holder.transform.Rotate(new Vector3(0, 0, 2));
+        yield return new WaitForSeconds(0.02f);
+        gun_holder.transform.Rotate(new Vector3(0, 0, -6));
     }
 
     IEnumerator Shake()

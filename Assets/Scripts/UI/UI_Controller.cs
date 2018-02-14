@@ -19,89 +19,107 @@ public class UI_Controller : MonoBehaviour {
             if (Input.GetTouch(i).phase == TouchPhase.Began)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-                RaycastHit2D rh = Physics2D.Raycast(pos, Vector2.zero, 0f, button_layer);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(pos, Vector2.zero, 0f, button_layer);
 
-                if(rh.collider)
+                foreach(RaycastHit2D rh in hits)
                 {
-                    if (rh.collider.CompareTag("Right"))
+                    if (rh.collider)
                     {
-                        rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
-                        //This checks to make sure the player actually moved and wasn't stunned
-                        if(pm.set_velocity_mod(1) == 1)
-                            cur_direction = 1;
-                        ps.dir = 1;
-                    }
-                    else if (rh.collider.CompareTag("Left"))
-                    {
-                        rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
-                        //This checks to make sure the player actually moved and wasn't stunned
-                        if (pm.set_velocity_mod(-1) == 1)
-                            cur_direction = -1;
-                        ps.dir = -1;
-                    }
-                    else if (rh.collider.CompareTag("Jump"))
-                    {
-                        rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
-                        pm.attempt_jump();
-                    }
-                    else if (rh.collider.CompareTag("Shoot"))
-                    {
-                        rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
-                        ps.shoot(cur_direction);
+                        if (rh.collider.CompareTag("Right"))
+                        {
+                            rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
+                            //This checks to make sure the player actually moved and wasn't stunned
+                            if (pm.set_velocity_mod(1) == 1)
+                                cur_direction = 1;
+                            ps.dir = 1;
+                        }
+                        else if (rh.collider.CompareTag("Left"))
+                        {
+                            rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
+                            //This checks to make sure the player actually moved and wasn't stunned
+                            if (pm.set_velocity_mod(-1) == 1)
+                                cur_direction = -1;
+                            ps.dir = -1;
+                        }
+                        else if (rh.collider.CompareTag("Jump"))
+                        {
+                            rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
+                            pm.attempt_jump();
+                        }
+                        else if (rh.collider.CompareTag("Shoot"))
+                        {
+                            rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[1];
+                            ps.shoot(cur_direction);
+                        }
                     }
                 }
+
             }
             else if(Input.GetTouch(i).phase == TouchPhase.Stationary || Input.GetTouch(i).phase == TouchPhase.Moved)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-                RaycastHit2D rh = Physics2D.Raycast(pos, Vector2.zero, 0f, button_layer);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(pos, Vector2.zero, 0f, button_layer);
 
-                if (rh.collider)
+
+                foreach(RaycastHit2D rh in hits)
                 {
-                    if (rh.collider.CompareTag("Right"))
+                    if (rh.collider)
                     {
-                        if(pm.set_velocity_mod(1) == 1)
-                            cur_direction = 1;
-                        ps.dir = 1;
-                    }
-                    else if (rh.collider.CompareTag("Left"))
-                    {
-                        if(pm.set_velocity_mod(-1) == 1)
-                            cur_direction = -1;
-                        ps.dir = -1;
-                    }
-                    else if (rh.collider.CompareTag("Shoot"))
-                    {
-                        ps.shoot(cur_direction);
+                        if (rh.collider.CompareTag("Right"))
+                        {
+                            if (pm.set_velocity_mod(1) == 1)
+                                cur_direction = 1;
+                            ps.dir = 1;
+                        }
+                        else if (rh.collider.CompareTag("Left"))
+                        {
+                            if (pm.set_velocity_mod(-1) == 1)
+                                cur_direction = -1;
+                            ps.dir = -1;
+                        }
+                        else if (rh.collider.CompareTag("Jump"))
+                        {
+                            pm.attempt_jump();
+                        }
+                        else if (rh.collider.CompareTag("Shoot"))
+                        {
+                            ps.shoot(cur_direction);
+                        }
                     }
                 }
+
             }
             else if(Input.GetTouch(i).phase == TouchPhase.Ended)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-                RaycastHit2D rh = Physics2D.Raycast(pos, Vector2.zero, 0f, button_layer);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(pos, Vector2.zero, 0f, button_layer);
 
-                if (rh.collider)
+
+                foreach(RaycastHit2D rh in hits)
                 {
-                    if (rh.collider.CompareTag("Right"))
+                    if (rh.collider)
                     {
-                        pm.set_velocity_mod(0);
-                        rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[0];
-                    }
-                    else if (rh.collider.CompareTag("Left"))
-                    {
-                        pm.set_velocity_mod(0);
-                        rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[0];
-                    }
-                    else if (rh.collider.CompareTag("Jump"))
-                    {
-                        rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[0];
-                    }
-                    else if (rh.collider.CompareTag("Shoot"))
-                    {
-                        rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[0];
+                        if (rh.collider.CompareTag("Right"))
+                        {
+                            pm.set_velocity_mod(0);
+                            rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[0];
+                        }
+                        else if (rh.collider.CompareTag("Left"))
+                        {
+                            pm.set_velocity_mod(0);
+                            rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[0];
+                        }
+                        else if (rh.collider.CompareTag("Jump"))
+                        {
+                            rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[0];
+                        }
+                        else if (rh.collider.CompareTag("Shoot"))
+                        {
+                            rh.collider.GetComponent<SpriteRenderer>().sprite = button_sprites[0];
+                        }
                     }
                 }
+                
             }
         }
     }

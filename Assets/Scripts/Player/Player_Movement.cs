@@ -79,6 +79,9 @@ public class Player_Movement : MonoBehaviour {
     public void attempt_jump()
     {
         if (on_ground && rb.velocity.y == 0 && can_move)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0.001f);
             rb.AddForce(new Vector2(0, jump_strength));
+        }
     }
 }

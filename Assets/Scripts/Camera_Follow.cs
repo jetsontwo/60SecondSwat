@@ -7,7 +7,7 @@ public class Camera_Follow : MonoBehaviour {
     public GameObject to_follow;
     private Rigidbody2D player_rb;
     private float accel = 0;
-    private bool is_going_right = false;
+    //private bool is_going_right = false;
 
     // Use this for initialization
     void Start () {
@@ -18,13 +18,13 @@ public class Camera_Follow : MonoBehaviour {
 	void Update () {
 
         if (player_rb.velocity.x > 0 && accel < 100)
-            accel += 5;
+            accel += 15;
         else if (player_rb.velocity.x < 0 && accel > -100)
-            accel -= 5;
+            accel -= 15;
         else if(player_rb.velocity.x == 0 && accel != 0)
-            accel += accel > 0 ? -5 : 5;
+            accel += accel > 0 ? -15 : 15;
 
-        transform.position = new Vector3(to_follow.transform.position.x + (3f * (accel / 100f)), to_follow.transform.position.y, -10);
+        transform.position = new Vector3(to_follow.transform.position.x + (accel / 100f), to_follow.transform.position.y, -10);
 
 
         //if (player_rb.velocity.x > 0)
