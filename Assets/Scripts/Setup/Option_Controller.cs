@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class Option_Controller : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public bool reset_all;
+
+	void Start()
+    {
+        if (reset_all)
+            Reset_All();
+    }
+
+    public void Reset_All()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void Joystick_Controls(bool use)
+    {
+        PlayerPrefs.SetInt("Joystick", use ? 1 : 0);
+    }
+
 }
