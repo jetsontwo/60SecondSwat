@@ -136,11 +136,11 @@ public class Player_Shooting : MonoBehaviour {
     IEnumerator Recoil()
     {
         gun_holder.transform.Rotate(new Vector3(0, 0, 2));
-        yield return new WaitForSeconds(0.02f);
+        yield return new WaitForSeconds(0.018f);
         gun_holder.transform.Rotate(new Vector3(0, 0, 2));
-        yield return new WaitForSeconds(0.02f);
+        yield return new WaitForSeconds(0.018f);
         gun_holder.transform.Rotate(new Vector3(0, 0, 2));
-        yield return new WaitForSeconds(0.02f);
+        yield return new WaitForSeconds(0.018f);
         gun_holder.transform.Rotate(new Vector3(0, 0, -6));
     }
 

@@ -68,9 +68,9 @@ public class Player_Movement : MonoBehaviour {
             //Sets the new velocity using either 1 for forward, -1 for back, or 0 for not moving
             rb.velocity = new Vector2(speed * Time.deltaTime * new_vel_mod, rb.velocity.y);
             if (new_vel_mod == 1)
-                gun_holder.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                gun_holder.transform.rotation = Quaternion.Euler(new Vector3(0, 0, gun_holder.transform.rotation.eulerAngles.z));
             else if (new_vel_mod == -1)
-                gun_holder.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                gun_holder.transform.rotation = Quaternion.Euler(new Vector3(0, 180, gun_holder.transform.rotation.eulerAngles.z));
             return 1;
         }
         return 0;

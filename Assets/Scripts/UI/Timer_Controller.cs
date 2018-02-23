@@ -70,7 +70,8 @@ public class Timer_Controller : MonoBehaviour {
         UI.SetActive(false);
         player.GetComponent<Player_Movement>().enabled = false;
         player.GetComponent<Player_Shooting>().enabled = false;
-        Time.timeScale = 0f;
+        Time.timeScale = 0.2f;
+        running = false;
         win_screen.SetActive(true);
         game_music.Stop();
         win_music_holder.GetComponent<AudioSource>().Play();
@@ -85,6 +86,7 @@ public class Timer_Controller : MonoBehaviour {
         end_bomb.GetComponent<SpriteRenderer>().enabled = false;
         StartCoroutine(end_bomb.GetComponent<Bomb_Controller>().expand_circle());
         Time.timeScale = 0.2f;
+        running = false;
         death_screen.SetActive(true);
         end_music_holder.GetComponent<AudioSource>().Play();
         game_music.Stop();
