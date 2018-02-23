@@ -16,16 +16,19 @@ public class Player_Shooting : MonoBehaviour {
     public ParticleSystem shoot_smoke;
     private ParticleSystem passive_smoke;
     [Header("Bullets")]
-    public GameObject bullet_list;                      //Gets updated by gun type (different bullets = dif damage)
+    public GameObject bullet_list;                     
     private int cur_bullet_index;
     public GameObject shell;
 
+    public float kickback_power;
+
 
     [Header("Reloading")]
-    public int clip_size = 7;                           //Gets updated by gun type
+    public int clip_size = 7;                           
     private int cur_clip_index = 0;
     public bool can_shoot = true, stunned = false;
-    public float reload_time = 0;                       //Gets updated by gun type
+    public float reload_time = 0;
+    public float shoot_delay;               
     private AudioSource shoot_sound;
 
 	// Use this for initialization
@@ -112,24 +115,38 @@ public class Player_Shooting : MonoBehaviour {
             shoot_sound.Play();
 
 
-            //Clip Stuff (Not active ATM)
-            cur_clip_index++;
+            //Clip Stuff
+            if (cur_clip_index >= clip_size)
+            {
+                cur_clip_index = 0;
+                StartCoroutine(Reload());
+            }
+            else
+            {
+                cur_clip_index++;
+                StartCoroutine(Shoot_Delay_Wait());
+            }
+
 
             //Loops the bullet list index back around
             if (cur_bullet_index == 40)
+            {
                 cur_bullet_index = 0;
-
-            StartCoroutine(Reload());
+            }
         }
     }
 
     IEnumerator Reload()
     {
         can_shoot = false;
-        //gun_holder.transform.rotation = Quaternion.Euler(new Vector3(0, gun_holder.transform.rotation.eulerAngles.y, 10));
-        yield return new WaitForSeconds(reload_time/2f);
-        //gun_holder.transform.rotation = Quaternion.Euler(new Vector3(0, gun_holder.transform.rotation.eulerAngles.y, 0));
-        yield return new WaitForSeconds(reload_time / 2f);
+        yield return new WaitForSeconds(reload_time);
+        can_shoot = true;
+    }
+
+    IEnumerator Shoot_Delay_Wait()
+    {
+        can_shoot = false;
+        yield return new WaitForSeconds(shoot_delay);
         can_shoot = true;
     }
 
@@ -148,7 +165,7 @@ public class Player_Shooting : MonoBehaviour {
     {
         for(int i = 0; i < 3; ++i)
         {
-            Camera.main.transform.position += new Vector3(Random.Range(-.1f, .1f), Random.Range(-.1f, .1f), 0);
+            Camera.main.transform.position += new Vector3(Random.Range(-.1f, .1f) * kickback_power, Random.Range(-.1f, .1f) * kickback_power, 0);
             yield return new WaitForSeconds(0.1f);
         }
     }

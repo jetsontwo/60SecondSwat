@@ -1026,7 +1026,7 @@ MonoBehaviour:
   shotgun: {fileID: 0}
   assualt_rifle: {fileID: 567789282}
   machine_gun: {fileID: 1481424979}
-  Player: {fileID: 708836147}
+  ps: {fileID: 708836153}
 --- !u!4 &182047001
 Transform:
   m_ObjectHideFlags: 0
@@ -2705,7 +2705,7 @@ Prefab:
         type: 2}
       propertyPath: bullet_list
       value: 
-      objectReference: {fileID: 993678100}
+      objectReference: {fileID: 0}
     - target: {fileID: 212931995659295330, guid: 320cac27ab7b32b42b3a05c99e7e3896,
         type: 2}
       propertyPath: m_Sprite
@@ -2720,7 +2720,23 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114298604032344716, guid: 320cac27ab7b32b42b3a05c99e7e3896,
+        type: 2}
+      propertyPath: kickback_power
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114400731434283720, guid: 320cac27ab7b32b42b3a05c99e7e3896,
+        type: 2}
+      propertyPath: shell
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114400731434283720, guid: 320cac27ab7b32b42b3a05c99e7e3896,
+        type: 2}
+      propertyPath: shoot_smoke
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114298604032344716, guid: 320cac27ab7b32b42b3a05c99e7e3896, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 320cac27ab7b32b42b3a05c99e7e3896, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &419609948
@@ -3534,13 +3550,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc04ce3f54f4e2244a47a6341c811382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip_size: 30
+  clip_size: 20
   bullet_pooling_list: {fileID: 993678100}
   bullet_shell: {fileID: 1705928240635946, guid: 69c4150c58b22aa4481088764e155534,
     type: 2}
   reload_time: 1
+  shoot_delay: 0.1
   damage: 1
-  kickback_power: 0
+  kickback_power: 1
   shoot_smoke: {fileID: 1710522796}
 --- !u!1 &667353941
 GameObject:
@@ -7807,6 +7824,7 @@ MonoBehaviour:
   bullet_pooling_list: {fileID: 0}
   bullet_shell: {fileID: 0}
   reload_time: 0
+  shoot_delay: 0
   damage: 0
   kickback_power: 0
   shoot_smoke: {fileID: 0}
