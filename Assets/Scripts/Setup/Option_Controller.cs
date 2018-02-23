@@ -17,7 +17,6 @@ public class Option_Controller : MonoBehaviour {
 
         //These set all the controls to visual reflect what the player had set
         Check_Control_Preference();
-
     }
 
     public void Reset_All()

@@ -16,16 +16,16 @@ public class Player_Shooting : MonoBehaviour {
     public ParticleSystem shoot_smoke;
     private ParticleSystem passive_smoke;
     [Header("Bullets")]
-    public GameObject bullet_list;
+    public GameObject bullet_list;                      //Gets updated by gun type (different bullets = dif damage)
     private int cur_bullet_index;
     public GameObject shell;
 
 
     [Header("Reloading")]
-    public int clip_size = 7;
+    public int clip_size = 7;                           //Gets updated by gun type
     private int cur_clip_index = 0;
     public bool can_shoot = true, stunned = false;
-    public float reload_time = 0;
+    public float reload_time = 0;                       //Gets updated by gun type
     private AudioSource shoot_sound;
 
 	// Use this for initialization
