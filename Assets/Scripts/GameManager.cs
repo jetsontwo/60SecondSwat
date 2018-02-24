@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour {
         
         ///////////////////////////////////////////Setting up the player's gun////////////////////////////////////////////////////
 
-        PlayerPrefs.SetString("Player_Gun", "Assualt_Rifle");
-
         switch (PlayerPrefs.GetString("Player_Gun"))
         {
             case "Pistol":
