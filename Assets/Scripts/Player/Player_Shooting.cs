@@ -19,8 +19,10 @@ public class Player_Shooting : MonoBehaviour {
     public GameObject bullet_list;                     
     private int cur_bullet_index;
     public GameObject shell;
+    public Transform shell_spawn_location;
 
     public float kickback_power;
+    public bool automatic;
 
 
     [Header("Reloading")]
@@ -37,7 +39,7 @@ public class Player_Shooting : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         shoot_sound = GetComponent<AudioSource>();
 
-        bullet = new GameObject[40];
+        bullet = new GameObject[50];
 
         int count = 0;
         foreach(Transform t in bullet_list.transform)
@@ -57,7 +59,8 @@ public class Player_Shooting : MonoBehaviour {
             shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         else
             shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-        shoot_smoke.gameObject.transform.position = transform.position + new Vector3(1f * dir, 0, 0);
+        //shoot_smoke.gameObject.transform.position = transform.position + new Vector3(1f * dir, 0, 0);
+        //shoot_smoke.gameObject.transform.localPosition = new Vector3(1 * dir, 0, 0);
     }
 
     //Shoots in a direction 1 = right -1 (or really anything else) is left
@@ -90,7 +93,7 @@ public class Player_Shooting : MonoBehaviour {
             bul.SetActive(true);
 
             //Bullet Shell
-            GameObject s = Instantiate(shell, transform.position, Quaternion.identity);
+            GameObject s = Instantiate(shell, shell_spawn_location.position, Quaternion.identity);
             s.GetComponent<Rigidbody2D>().AddForce(new Vector2(-direction * 50, Random.Range(190, 210)));
             s.GetComponent<Rigidbody2D>().AddTorque(Random.Range(-5f, 5f));
 
@@ -101,7 +104,7 @@ public class Player_Shooting : MonoBehaviour {
             StartCoroutine(Recoil());
 
             //Smoke Effects
-            shoot_smoke.gameObject.transform.position = transform.position + new Vector3(1.1f * direction, 0, 0);
+            //shoot_smoke.gameObject.transform.position = transform.position + new Vector3(1.1f * direction, 0, 0);
             shoot_smoke.Emit(10);
             shoot_smoke.gameObject.GetComponent<Animator>().Play("Shoot");
 
@@ -129,7 +132,7 @@ public class Player_Shooting : MonoBehaviour {
 
 
             //Loops the bullet list index back around
-            if (cur_bullet_index == 40)
+            if (cur_bullet_index == 50)
             {
                 cur_bullet_index = 0;
             }

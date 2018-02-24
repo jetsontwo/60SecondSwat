@@ -83,7 +83,8 @@ public class UI_Controller : MonoBehaviour {
                         }
                         else if (rh.collider.CompareTag("Shoot"))
                         {
-                            ps.shoot(cur_direction);
+                            if(ps.automatic)
+                                ps.shoot(cur_direction);
                         }
                     }
                 }
