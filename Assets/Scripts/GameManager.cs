@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
         
         ///////////////////////////////////////////Setting up the player's gun////////////////////////////////////////////////////
 
-        PlayerPrefs.SetString("Player_Gun", "Pistol");
+        PlayerPrefs.SetString("Player_Gun", "Assualt_Rifle");
 
         switch (PlayerPrefs.GetString("Player_Gun"))
         {
@@ -32,21 +32,19 @@ public class GameManager : MonoBehaviour {
                 cur_gun = Instantiate(pistol, ps.gun_holder.transform.position + new Vector3(-.4f, -.183f, 0), Quaternion.Euler(0, 180, 0), ps.gun_holder.transform);
                 break;
             case "Shotgun":
-                shotgun.SetActive(true);
-                cur_gun = shotgun;
+                cur_gun = Instantiate(shotgun, ps.gun_holder.transform.position + new Vector3(-.4f, -.183f, 0), Quaternion.Euler(0, 180, 0), ps.gun_holder.transform);
                 break;
             case "Assualt_Rifle":
-                assualt_rifle.SetActive(true);
-                cur_gun = assualt_rifle;
+                cur_gun = Instantiate(assualt_rifle, ps.gun_holder.transform.position + new Vector3(-.4f, -.183f, 0), Quaternion.Euler(0, 180, 0), ps.gun_holder.transform);
                 break;
             case "Machine_Gun":
-                machine_gun.SetActive(true);
-                cur_gun = machine_gun;
+                cur_gun = Instantiate(machine_gun, ps.gun_holder.transform.position + new Vector3(-.4f, -.183f, 0), Quaternion.Euler(0, 180, 0), ps.gun_holder.transform);
                 break;
             default:
                 pistol.SetActive(true);
                 break;
         }
+
 
         ps.clip_size = cur_gun.GetComponent<Gun_Properties>().clip_size;
 
