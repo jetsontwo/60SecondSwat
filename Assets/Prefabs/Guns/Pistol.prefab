@@ -166,6 +166,7 @@ MonoBehaviour:
   bullet_shell: {fileID: 1705928240635946, guid: 69c4150c58b22aa4481088764e155534,
     type: 2}
   bullet_list_size: 50
+  shot_count: 1
   reload_time: 0.5
   shoot_delay: 0
   damage: 1.5

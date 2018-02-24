@@ -8,6 +8,8 @@ public class Gun_Properties : MonoBehaviour {
     public int clip_size;
     public GameObject bullet_shell;
     public int bullet_list_size;
+    [Range(1, 10)]
+    public int shot_count;
     [Range(0, 5)]
     public float reload_time;
     [Range(0, 1)]
@@ -22,4 +24,7 @@ public class Gun_Properties : MonoBehaviour {
 
     [Header("Smoke")]
     public ParticleSystem shoot_smoke;
+
+    [Header("Shotgun")]
+    public float spread;
 }

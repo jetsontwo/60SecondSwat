@@ -43,25 +43,28 @@ public class GameManager : MonoBehaviour {
                 break;
         }
 
+        Gun_Properties gp = cur_gun.GetComponent<Gun_Properties>();
 
-        ps.clip_size = cur_gun.GetComponent<Gun_Properties>().clip_size;
+        ps.clip_size = gp.clip_size;
 
-        int bullet_list_size = cur_gun.GetComponent<Gun_Properties>().bullet_list_size;
+        int bullet_list_size = gp.bullet_list_size;
         for (int i = 0; i < bullet_list_size; ++i)
         {
             Instantiate(rifle_bullets, bullet_pool.transform);
         }
         ps.bullet_list = bullet_pool;
-        ps.shell = cur_gun.GetComponent<Gun_Properties>().bullet_shell;
+        ps.shell = gp.bullet_shell;
+        ps.shot_count = gp.shot_count;
 
-        ps.reload_time = cur_gun.GetComponent<Gun_Properties>().reload_time;
-        //ps. = cur_gun.GetComponent<Gun_Properties>().damage;
+        ps.reload_time = gp.reload_time;
+        //ps. = gp.damage;
 
-        ps.kickback_power = cur_gun.GetComponent<Gun_Properties>().kickback_power;
-        ps.shoot_smoke = cur_gun.GetComponent<Gun_Properties>().shoot_smoke;
-        ps.shoot_delay = cur_gun.GetComponent<Gun_Properties>().shoot_delay;
-        ps.automatic = cur_gun.GetComponent<Gun_Properties>().automatic;
-        ps.shell_spawn_location = cur_gun.GetComponent<Gun_Properties>().shell_spawn_location;
+        ps.kickback_power = gp.kickback_power;
+        ps.shoot_smoke = gp.shoot_smoke;
+        ps.shoot_delay = gp.shoot_delay;
+        ps.automatic = gp.automatic;
+        ps.shell_spawn_location = gp.shell_spawn_location;
+        ps.spread = gp.spread;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

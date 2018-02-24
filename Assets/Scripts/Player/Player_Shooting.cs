@@ -23,6 +23,8 @@ public class Player_Shooting : MonoBehaviour {
 
     public float kickback_power;
     public bool automatic;
+    public int shot_count;
+    public float spread;
 
 
     [Header("Reloading")]
@@ -69,28 +71,55 @@ public class Player_Shooting : MonoBehaviour {
         if (can_shoot && !stunned)
         {
             dir = direction;
-            GameObject bul = bullet[cur_bullet_index++];
+
+            GameObject[] bul = new GameObject[shot_count];
+            for (int i = 0; i < shot_count; ++i)
+            {
+                bul[i] = bullet[cur_bullet_index++];
+
+                //Loops the bullet list index back around
+                if (cur_bullet_index == 50)
+                {
+                    cur_bullet_index = 0;
+                }
+            }
 
             //Shoots from edge of player
-            bul.transform.position = transform.position + new Vector3(1f * direction, 0, 0);
-             
+            for(int i = 0; i < shot_count; ++i)
+                bul[i].transform.position = transform.position + new Vector3(1f * direction, 0, 0);
+
 
             //Flips the bullet based on direction facing
             if (direction == 1)
-            {  
-                bul.transform.rotation = Quaternion.identity;
+            {
+                if (shot_count == 1)
+                    bul[0].transform.rotation = Quaternion.identity;
+                else
+                {
+                    for (int i = 0; i < shot_count; ++i)
+                        bul[i].transform.rotation = Quaternion.Euler(0, 0, Random.Range(-spread, spread));
+                }
+
                 //Move back the player
                 rb.MovePosition(new Vector2(transform.position.x - 0.05f, transform.position.y));
-                shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else
             {
-                bul.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                if (shot_count == 1)
+                    bul[0].transform.rotation = Quaternion.Euler(0, 0, 180);
+                else
+                {
+                    for (int i = 0; i < shot_count; ++i)
+                        bul[i].transform.rotation = Quaternion.Euler(0, 0, 180 + Random.Range(-spread, spread));
+                }
+
                 //Move back the player
                 rb.MovePosition(new Vector2(transform.position.x + 0.05f, transform.position.y));
-                shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                shoot_smoke.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
-            bul.SetActive(true);
+            for (int i = 0; i < shot_count; ++i)
+                bul[i].SetActive(true);
 
             //Bullet Shell
             GameObject s = Instantiate(shell, shell_spawn_location.position, Quaternion.identity);
@@ -131,11 +160,7 @@ public class Player_Shooting : MonoBehaviour {
             }
 
 
-            //Loops the bullet list index back around
-            if (cur_bullet_index == 50)
-            {
-                cur_bullet_index = 0;
-            }
+
         }
     }
 

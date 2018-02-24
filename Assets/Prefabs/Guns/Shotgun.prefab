@@ -166,13 +166,15 @@ MonoBehaviour:
   bullet_shell: {fileID: 1688419573018124, guid: 75a899c553755d84fa752ec270ef0d9c,
     type: 2}
   bullet_list_size: 50
+  shot_count: 5
   reload_time: 2
   shoot_delay: 0.5
-  damage: 1
+  damage: 2
   kickback_power: 1.5
   automatic: 0
   shell_spawn_location: {fileID: 4327007140958932}
   shoot_smoke: {fileID: 198124221964616804}
+  spread: 5
 --- !u!198 &198037062340363336
 ParticleSystem:
   m_ObjectHideFlags: 1
