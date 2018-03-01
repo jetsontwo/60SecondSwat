@@ -2613,6 +2613,50 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1153495566004984, guid: 806ec6b80dfe1cb46a627825feae89dd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224304435337674396, guid: 806ec6b80dfe1cb46a627825feae89dd,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224560416455917518, guid: 806ec6b80dfe1cb46a627825feae89dd,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224304435337674396, guid: 806ec6b80dfe1cb46a627825feae89dd,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224560416455917518, guid: 806ec6b80dfe1cb46a627825feae89dd,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224304435337674396, guid: 806ec6b80dfe1cb46a627825feae89dd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 224304435337674396, guid: 806ec6b80dfe1cb46a627825feae89dd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224560416455917518, guid: 806ec6b80dfe1cb46a627825feae89dd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 224560416455917518, guid: 806ec6b80dfe1cb46a627825feae89dd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 806ec6b80dfe1cb46a627825feae89dd, type: 2}
   m_IsPrefabParent: 0
@@ -4137,6 +4181,8 @@ MonoBehaviour:
   shell_spawn_location: {fileID: 0}
   kickback_power: 0
   automatic: 0
+  shot_count: 0
+  spread: 0
   clip_size: 30
   can_shoot: 1
   stunned: 0
